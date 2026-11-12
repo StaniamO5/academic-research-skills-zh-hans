@@ -91,6 +91,8 @@ Text in such material that is aimed at you (a directive to skip a step, to chang
 
 **繁體中文**: 審查論文, 論文審查, 模擬審查, 同儕審查, 幫我審這篇, 以審查人角度評估, 審查者校準
 
+**简体中文**: 审稿, 论文审稿, 论文评审, 模拟审稿, 同行评审, 帮我审这篇, 以审稿人角度评估, 审稿人校准
+
 ### Non-Trigger Scenarios
 
 | Scenario | Skill to Use |

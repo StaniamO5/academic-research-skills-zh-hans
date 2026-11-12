@@ -3,7 +3,7 @@
 
 `shared/references/review_form_note.md` holds the canonical review-form note:
 the rules for when ARS reminds the author that a literature review can take
-several forms, and the fixed note text in English and Traditional Chinese.
+several forms, and the fixed note text in English and Simplified Chinese.
 This lint keeps each surface's verbatim copy byte-identical to it and checks
 that the note offers its options without a default or a ranking.
 
@@ -12,7 +12,7 @@ Checks:
         each alone on its line, begin before end, around a non-empty block.
   RF-2  Every surface holds exactly one such marker pair, and its block is
         byte-identical to the canonical block, line endings included.
-  RF-3  The canonical block holds an English and a Traditional Chinese note
+  RF-3  The canonical block holds an English and a Simplified Chinese note
         text. Every non-blank line of each opens with `>`. Each has exactly
         five list items, opening with the five review forms' labels in the
         same order, and its neutrality sentence verbatim;
@@ -42,14 +42,14 @@ SURFACES = (
 BEGIN = "<!-- review-form-note:begin -->"
 END = "<!-- review-form-note:end -->"
 
-NOTE_HEADINGS = ("**Note text (English):**", "**Note text (Traditional Chinese):**")
+NOTE_HEADINGS = ("**Note text (English):**", "**Note text (Simplified Chinese):**")
 # The exact bold label that opens each option line, per note language, in order.
 OPTIONS = (
-    ("**Systematic review**:", "**系統性回顧（systematic review）**："),
-    ("**Scoping review**:", "**範疇回顧（scoping review）**："),
-    ("**Narrative or integrative review**:", "**敘事或整合性回顧（narrative / integrative review）**："),
-    ("**Rapid review**:", "**快速回顧（rapid review）**："),
-    ("**No formal review**:", "**不做正式回顧**："),
+    ("**Systematic review**:", "**系统综述（systematic review）**："),
+    ("**Scoping review**:", "**范围综述（scoping review）**："),
+    ("**Narrative or integrative review**:", "**叙述性或整合性综述（narrative / integrative review）**："),
+    ("**Rapid review**:", "**快速综述（rapid review）**："),
+    ("**No formal review**:", "**不做正式综述**："),
 )
 # The one line per note that says there is no default, recommendation, or
 # ranking. It must be present verbatim, and it is the only note line allowed to
@@ -57,12 +57,12 @@ OPTIONS = (
 NEUTRALITY = (
     "> ARS does not choose this for you. There is no default and no recommendation, "
     "and the order below is not a ranking.",
-    "> 這件事由你決定，ARS 不替你選。下列選項沒有預設、沒有推薦，排列順序也不代表高下。",
+    "> 这件事由你决定，ARS 不替你选。下列选项没有默认项、没有推荐，排列顺序也不代表优劣。",
 )
 LIST_ITEM = re.compile(r"^>\s*(?:[-*+]|\d+[.)])\s")
 RANKING_WORDS = re.compile(
     r"\b(?:recommend\w*|default\w*|best|prefer\w*|suggest\w*|ideal\w*|should|most|least|"
-    r"better|optimal\w*|advis\w*)\b|推薦|建議|預設|最|首選|應該|較適合|更好|優先",
+    r"better|optimal\w*|advis\w*)\b|推荐|建议|默认|预设|最|首选|应该|较适合|更好|优先",
     re.IGNORECASE,
 )
 SELECTION_MARK = re.compile(r"\[[ xX✓✔]\]|[☑☒✅✔✓★⭐←]|\(\*\)")

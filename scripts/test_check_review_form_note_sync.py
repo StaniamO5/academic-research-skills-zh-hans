@@ -28,10 +28,10 @@ LINT = REPO_ROOT / "scripts" / "check_review_form_note_sync.py"
 SKILL = Path("academic-paper/SKILL.md")
 PHRASE = "The author decides whether to run a systematic review."
 EN_SCOPING = "> - **Scoping review**: maps what has been studied"
-ZH_SCOPING = "> - **範疇回顧（scoping review）**：用系統化的做法"
+ZH_SCOPING = "> - **范围综述（scoping review）**：用系统的方法"
 EN_NEUTRALITY = NEUTRALITY[0].removeprefix("> ")
 EN_NO_FORMAL = "It does not claim to cover the literature."
-ZH_NO_FORMAL = "不宣稱涵蓋整體文獻。"
+ZH_NO_FORMAL = "不声称覆盖全部文献。"
 
 
 @pytest.fixture()
@@ -76,7 +76,7 @@ def test_repository_passes() -> None:
 def test_canonical_lists_every_surface() -> None:
     text = (REPO_ROOT / CANONICAL).read_text(encoding="utf-8")
     for rel in SURFACES:
-        assert f"`{rel}`" in text
+        assert f"`{rel.as_posix()}`" in text
 
 
 def test_copied_tree_passes(tree: Path) -> None:
@@ -122,8 +122,8 @@ def test_changed_canonical_fails_every_surface(tree: Path) -> None:
         (EN_SCOPING, EN_SCOPING + " (default)", "default"),
         (EN_SCOPING, EN_SCOPING + " Often the best fit.", "best"),
         (EN_NO_FORMAL, "Least effort; " + EN_NO_FORMAL, "Least"),
-        (ZH_SCOPING, ZH_SCOPING + "（推薦）", "推薦"),
-        (ZH_SCOPING, ZH_SCOPING + "多數論文較適合", "較適合"),
+        (ZH_SCOPING, ZH_SCOPING + "（推荐）", "推荐"),
+        (ZH_SCOPING, ZH_SCOPING + "多数论文较适合", "较适合"),
         (ZH_NO_FORMAL, "最省力，但" + ZH_NO_FORMAL, "最"),
         ("> Reply with the form you want", "> We suggest a systematic review. Reply with the form you want",
          "suggest"),
@@ -191,15 +191,15 @@ def test_relabelled_option_fails(tree: Path) -> None:
 
 
 def test_reordered_options_fail(tree: Path) -> None:
-    first = _line(tree, "> - **系統性回顧")
-    second = _line(tree, "> - **範疇回顧")
+    first = _line(tree, "> - **系统综述")
+    second = _line(tree, "> - **范围综述")
     _edit_everywhere(tree, first + "\n" + second, second + "\n" + first)
-    assert "(Traditional Chinese):** option out of order or relabelled" in _errors(tree)
+    assert "(Simplified Chinese):** option out of order or relabelled" in _errors(tree)
 
 
 def test_missing_language_fails(tree: Path) -> None:
-    _edit_everywhere(tree, "**Note text (Traditional Chinese):**", "**Note text (zh):**")
-    assert "heading **Note text (Traditional Chinese):** is missing" in _errors(tree)
+    _edit_everywhere(tree, "**Note text (Simplified Chinese):**", "**Note text (zh):**")
+    assert "heading **Note text (Simplified Chinese):** is missing" in _errors(tree)
 
 
 def test_cli_exit_codes(tree: Path) -> None:

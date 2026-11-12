@@ -153,7 +153,7 @@ Abstracts must respect venue length and structure requirements. Methods may bene
 `scripts/check_acronyms.py` checks the acronyms in a Markdown or plain-text manuscript. It calls no model and never changes the file. Its rules follow common journal copyediting practice, and author and venue requirements come first (*Priority and scope* above).
 
 1. **Define at first use.** Give the full form, then the acronym in parentheses: randomized controlled trial (RCT). Later uses take the acronym alone.
-2. **Each scope defines its own.** The body, the English abstract, and the Chinese abstract are separate scopes. The Chinese form `全稱（English full form, ABBR）` counts as a definition.
+2. **Each scope defines its own.** The body, the English abstract, and the Chinese abstract are separate scopes. The Chinese form `全称（English full form, ABBR）` counts as a definition.
 3. **Define once per scope.** A second definition in the same scope is reported.
 4. **Allowlist.** Acronyms on the script's default list (DNA, PhD, DOI, and similar) or on the author's list (`--allow`, `--allow-file`) need no definition. The allowlist exempts rules 1 and 3 only.
 
